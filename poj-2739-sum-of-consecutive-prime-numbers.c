@@ -13,6 +13,16 @@
  *         Author:  Alan
  *   Organization:  
  *
+ * Some positive integers can be represented by a sum of one or more consecutive
+ * prime numbers. How many such representations does a given positive integer
+ * have? For example, the integer 53 has two representations 5 + 7 + 11 + 13 + 17
+ * and 53. The integer 41 has three representations 2+3+5+7+11+13, 11+13+17, and
+ * 41. The integer 3 has only one representation, which is 3. The integer 20 has
+ * no such representations. Note that summands must be consecutive prime 
+ * numbers, so neither 7 + 13 nor 3 + 5 + 5 + 7 is a valid representation for the
+ * integer 20. 
+ * Your mission is to write a program that reports the number of representations
+ * for the given positive integer.
  * =====================================================================================
  */
 #include <stdio.h>
@@ -21,7 +31,7 @@
 
 #include <math.h>
 
-#define MAX_SIZE 1001
+#define MAX_SIZE 11000
 
 unsigned short res[MAX_SIZE];
 unsigned short prime[MAX_SIZE];
@@ -48,36 +58,27 @@ int isPrime(int num) {
 
 void calculate(void) {
 
-    int i, j, sum, count;
+    int i, j, k, sum, count, numOfPrimes;
 
-    for (i = 1; i < MAX_SIZE; i++) {
+    for (i = 1, j = 1; i < MAX_SIZE; i++) {
         if (isPrime(i)) {
-            prime[i] = 1;
+            prime[j++] = i;
         }
     }
 
-    for (i = 1; i < MAX_SIZE; i++) {
-        printf ("curr i = %d \n", i);
-        sum = 0;
-        count = 0;
-        for (j = 1; sum < i && j < MAX_SIZE; j++) {
-            if (prime[j]) {
-                sum += j;
-                count++;
-                printf ("prime %d sum = %d count = %d\n", j, sum, count);
+    numOfPrimes = j - 1;
+
+    for (i = 2; i < MAX_SIZE; i++) {
+        for (j = 1, count = 0; j <= numOfPrimes; j++) {
+            for (k = j, sum = 0; k <= numOfPrimes && sum < i; k++) {
+                sum += prime[k];
             }
 
             if (sum == i) {
-                ans[i] = count;
-            } else if (sum > i && prime[i]) {
-                ans[i] = 1;
+                count++;
             }
         }
-    }
-
-    printf ("ans[1] = %d ans[2] = %d \n", ans[1], ans[2]);
-    for (i = 0; i < 10; i++) {
-        printf ("Ans[%d] = %d \n", i, ans[i]);
+        ans[i] = count;
     }
 }
 
@@ -88,10 +89,8 @@ int main(void) {
     calculate();
 
     while(scanf("%d", &input), input != 0) {
-
+        printf ("%d\n", ans[input]);
     }
 
     return 0;
-
 }
-

@@ -13,3 +13,4 @@ Poj solutions
 ## Very easy Problems
 - [X] 3299 Humidex
 - [X] 2159 Ancient Cipher
+- [X] 2379 Sum of consecutive prime numbers
