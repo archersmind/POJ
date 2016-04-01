@@ -17,3 +17,4 @@ Poj solutions
 
 ## DFS
 - [X] 2965 Pilots Brothers Refrigerator
+- [X] 1321 棋盘问题
