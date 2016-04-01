@@ -14,3 +14,6 @@ Poj solutions
 - [X] 3299 Humidex
 - [X] 2159 Ancient Cipher
 - [X] 2379 Sum of consecutive prime numbers
+
+## DFS
+- [X] 2965 Pilots Brothers Refrigerator
