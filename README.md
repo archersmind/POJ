@@ -19,3 +19,4 @@ Poj solutions
 - [X] 2965 Pilots Brothers Refrigerator
 - [X] 1321 棋盘问题
 - [X] 2248 Additional Chains
+- [X] 1979 Red and Black tiles
