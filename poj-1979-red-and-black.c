@@ -28,14 +28,13 @@ char tiles[MAX][MAX] = {'\0'};
 
 // Actions Move Up/Down/Left/Right
 int act[4][2] = {
-    { 0,    -1   }, // Move Up
-    { 0,    1   }, // Move Down
-    { -1,   0   }, // Move Lefe
-    { 1,    0   }  // Move Right
+    { -1,    0   }, // Move Up
+    {  1,    0   }, // Move Down
+    {  0,    1   }, // Move Lefe
+    {  0,   -1   }  // Move Right
 };
 
 void DFS(int x, int y) {
-    printf ("DFS x=%d y=%d \n", x, y);
     int i, tempx, tempy;
 
     tiles[x][y] = '#';
@@ -44,11 +43,9 @@ void DFS(int x, int y) {
     for(i = 0; i < 4; i++) {
         tempx = x + act[i][0];
         tempy = y + act[i][1];
-        printf ("tempx = %d tempy = %d \n", tempx, tempy);
-        if ((tempx >= 0 && tempx < w) &&
-                (tempy >= 0 && tempy < h) &&
+        if ((tempx >= 0 && tempx < h) &&
+                (tempy >= 0 && tempy < w) &&
                     tiles[tempx][tempy] == '.') {
-            printf ("tiles[%d][%d] = %c \n", tempx, tempy, tiles[tempx][tempy]);
             DFS(tempx, tempy);
         }
     }
@@ -65,16 +62,14 @@ int main(void) {
 
         for (i = 0; i< h; i++) {
             scanf("%s", tiles[i]);
-            printf ("tiles[%d] = %s \n", i, tiles[i]);
             for (j = 0; j < w; j++) {
                 if (tiles[i][j] == '@') {
-                    startx = j;
-                    starty = i;
+                    startx = i;
+                    starty = j;
                 }
             }
         }
         count = 0;
-        printf ("startx = %d starty = %d \n", startx, starty);
         DFS(startx, starty);
 
         printf ("%d\n", count);
