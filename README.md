@@ -20,3 +20,4 @@ Poj solutions
 - [X] 1321 棋盘问题
 - [X] 2248 Additional Chains
 - [X] 1979 Red and Black tiles
+- [X] 3989 Aoshu
